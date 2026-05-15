@@ -1,3 +1,5 @@
+import { NAVLINKS_DATA } from "./navlinks.data";
+
 export default function Navbar() {
     return (
         <nav className="fixed top-2 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl bg-white/80 backdrop-blur-md shadow-lg rounded-2xl z-50">
@@ -15,9 +17,11 @@ export default function Navbar() {
 
                 {/* Right side: Desktop Links */}
                 <div className="hidden md:flex items-center gap-8">
-                    <a href="/" className="text-gray-600 hover:text-indigo-600 font-medium transition-colors">Home</a>
-                    <a href="/about" className="text-gray-600 hover:text-indigo-600 font-medium transition-colors">About</a>
-                    <a href="/docs" className="text-gray-600 hover:text-indigo-600 font-medium transition-colors">Docs</a>
+                    {
+                        NAVLINKS_DATA.map((link, index) => (
+                            <a key={index} href={link.path} className="text-gray-600 hover:text-indigo-600 font-medium transition-colors">{link.label}</a>
+                        ))
+                    }
                 </div>
 
                 {/* Mobile Menu Button */}
