@@ -2,8 +2,11 @@ import { NAVLINKS_DATA } from "./navlinks.data";
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 import MenuIcon from '@mui/icons-material/Menu';
 import ClearIcon from '@mui/icons-material/Clear';
+import { useState } from "react";
 
 export default function Navbar() {
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
     return (
         <nav className="fixed top-2 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl bg-white/80 backdrop-blur-md shadow-lg rounded-2xl z-50">
             <div className="flex items-center justify-between px-6 py-4">
@@ -24,20 +27,21 @@ export default function Navbar() {
                 </div>
 
                 {/* Mobile Menu Button */}
-                <button className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none">
-                    <MenuIcon />
-                    <ClearIcon />
+                <button className="md:hidden text-gray-600 hover:text-gray-900 focus:outline-none" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    {isMenuOpen ? (<ClearIcon />) : (<MenuIcon />)}
                 </button>
             </div>
 
             {/* Mobile Dropdown Links */}
-            <div className="hidden px-6 pb-4 pt-2 border-t border-gray-200/50 flex-col gap-4">
-                {
-                    NAVLINKS_DATA.map((link, index) => (
-                        <a key={index} href={link.path} className={`block font-medium transition-colors ${window.location.pathname === link.path ? 'text-indigo-600' : 'text-gray-600 hover:text-indigo-600'}`}>{link.label}</a>
-                    ))
-                }
-            </div>
+            {isMenuOpen && (
+                <div className="flex md:hidden px-6 pb-4 pt-2 border-t border-gray-200/50 flex-col gap-4">
+                    {
+                        NAVLINKS_DATA.map((link, index) => (
+                            <a key={index} href={link.path} className={`block font-medium transition-colors ${window.location.pathname === link.path ? 'text-indigo-600' : 'text-gray-600 hover:text-indigo-600'}`}>{link.label}</a>
+                        ))
+                    }
+                </div>
+            )}
         </nav>
     );
 }
