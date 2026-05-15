@@ -19,7 +19,7 @@ export default function Navbar() {
                 <div className="hidden md:flex items-center gap-8">
                     {
                         NAVLINKS_DATA.map((link, index) => (
-                            <a key={index} href={link.path} className="text-gray-600 hover:text-indigo-600 font-medium transition-colors">{link.label}</a>
+                            <a key={index} href={link.path} className={`font-medium transition-colors ${window.location.pathname === link.path ? 'text-indigo-600' : 'text-gray-600 hover:text-indigo-600'}`}>{link.label}</a>
                         ))
                     }
                 </div>
@@ -36,9 +36,11 @@ export default function Navbar() {
 
             {/* Mobile Dropdown Links */}
             <div className="hidden px-6 pb-4 pt-2 border-t border-gray-200/50 flex-col gap-4">
-                <a href="/" className="block text-gray-600 hover:text-indigo-600 font-medium">Home</a>
-                <a href="/about" className="block text-gray-600 hover:text-indigo-600 font-medium">About</a>
-                <a href="/docs" className="block text-gray-600 hover:text-indigo-600 font-medium">Docs</a>
+                {
+                    NAVLINKS_DATA.map((link, index) => (
+                        <a key={index} href={link.path} className={`block font-medium transition-colors ${window.location.pathname === link.path ? 'text-indigo-600' : 'text-gray-600 hover:text-indigo-600'}`}>{link.label}</a>
+                    ))
+                }
             </div>
         </nav>
     );
