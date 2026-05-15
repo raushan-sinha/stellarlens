@@ -21,7 +21,7 @@ export default function Navbar() {
                 <div className="hidden md:flex items-center gap-8">
                     {
                         NAVLINKS_DATA.map((link, index) => (
-                            <a key={index} href={link.path} className={`font-medium transition-colors ${window.location.pathname === link.path ? 'text-indigo-600' : 'text-gray-600 hover:text-indigo-600'}`}>{link.label}</a>
+                            <a key={index} href={link.path} className={`font-medium transition-colors ${window.location.pathname === link.path ? 'text-red-600' : 'text-gray-600 hover:text-red-600'}`}>{link.label}</a>
                         ))
                     }
                 </div>
@@ -37,7 +37,7 @@ export default function Navbar() {
                 <div className="flex md:hidden px-6 pb-4 pt-2 border-t border-gray-200/50 flex-col gap-4">
                     {
                         NAVLINKS_DATA.map((link, index) => (
-                            <a key={index} href={link.path} className={`block font-medium transition-colors ${window.location.pathname === link.path ? 'text-indigo-600' : 'text-gray-600 hover:text-indigo-600'}`}>{link.label}</a>
+                            <a key={index} href={link.path} className={`block font-medium transition-colors ${window.location.pathname === link.path ? 'text-red-600' : 'text-gray-600 hover:text-red-600'}`}>{link.label}</a>
                         ))
                     }
                 </div>
