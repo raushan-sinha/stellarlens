@@ -1,4 +1,4 @@
-import { Navbar } from "./components/layout";
+import { Navbar } from "./components/navigation";
 
 export default function App() {
     return (
