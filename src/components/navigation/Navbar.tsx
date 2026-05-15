@@ -1,17 +1,14 @@
 import { NAVLINKS_DATA } from "./navlinks.data";
+import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 
 export default function Navbar() {
     return (
         <nav className="fixed top-2 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl bg-white/80 backdrop-blur-md shadow-lg rounded-2xl z-50">
             <div className="flex items-center justify-between px-6 py-4">
                 {/* Left side: Logo & Title */}
-                <div className="flex items-center gap-3">
-                    {/* Replace '/logo.png' with your actual image path */}
-                    <img
-                        src="/logo.png"
-                        alt="StellarLens Logo"
-                        className="w-8 h-8 rounded-full object-cover"
-                    />
+                <div className="flex items-center gap-2">
+                    {/* Logo & title */}
+                    <SatelliteAltIcon />
                     <span className="text-xl font-bold text-gray-900 tracking-tight">StellarLens</span>
                 </div>
 
