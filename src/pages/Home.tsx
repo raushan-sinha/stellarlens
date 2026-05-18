@@ -35,11 +35,11 @@ export default function Home() {
                     <article className="space-y-8">
                         {/* Header Section */}
                         <header className="space-y-3 border-b border-slate-800 pb-6">
-                            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl bg-gradient-to-r from-indigo-200 via-slate-100 to-indigo-200 bg-clip-text text-transparent">
+                            <h1 className="text-3xl font-extrabold tracking-tight text-[#fb9d6b] sm:text-4xl md:text-5xl bg-gradient-to-r from-indigo-200 via-slate-100 to-indigo-200 bg-clip-text">
                                 {spaceData.title}
                             </h1>
                             <div className="flex items-center gap-3 text-sm font-medium text-indigo-400">
-                                <span className="rounded-full bg-indigo-500/10 px-3 py-1 border border-indigo-500/20">
+                                <span className="rounded-full bg-[#057fb4] text-white px-3 py-1 border border-indigo-500/20">
                                     {spaceData.date}
                                 </span>
                             </div>
