@@ -51,7 +51,7 @@ export default function Home() {
                                 <img
                                     src={spaceData.hdurl}
                                     alt={spaceData.title}
-                                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.01]"
+                                    className="max-h-96 w-full object-cover md:max-h-[30rem] transition-transform duration-500 hover:scale-[1.01]"
                                 />
                             ) : (
                                 <div className="aspect-video w-full">
