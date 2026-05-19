@@ -2,7 +2,7 @@ import { Routes, BrowserRouter, Route } from "react-router-dom";
 import { Navbar } from "./components/navigation";
 import { About } from "./pages/About";
 import Home from "./pages/Home";
-import Docs from "./pages/Docs/Docs";
+import { Docs } from "./pages/Docs";
 
 export default function App() {
     return (
