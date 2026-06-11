@@ -8,7 +8,7 @@ export default function Home() {
     useEffect(() => {
         const fetchSpaceData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/space-data');
+                const response = await fetch('https://stellarlens-backend-dcbc.onrender.com/api/space-data');
                 if (!response.ok) throw new Error("Failed to fetch API.");
                 const data = await response.json();
                 setSpaceData(data);
