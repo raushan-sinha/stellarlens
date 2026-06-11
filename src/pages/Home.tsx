@@ -8,14 +8,13 @@ export default function Home() {
     useEffect(() => {
         const fetchSpaceData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/daily-news');
-                if (!response.ok) throw new Error("URL ids not fetching correctly.");
-
+                const response = await fetch('http://localhost:5000/api/space-data');
+                if (!response.ok) throw new Error("Failed to fetch API.");
                 const data = await response.json();
                 setSpaceData(data);
             } catch (error) {
-                console.error('Getting Error', error);
-                setErrorMsg('Please check your Internet connection.');
+                console.error('Error', error);
+                setErrorMsg('Failed to fetch API.');
             }
         }
 
