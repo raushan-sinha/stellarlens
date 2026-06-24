@@ -64,19 +64,20 @@ export default function Home() {
                             <section className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-xl">
                                 {spaceData.media_type === "image" ? (
                                     <img
-                                        src={spaceData.hdurl}
+                                        src={spaceData.hdurl || spaceData.url}
                                         alt={spaceData.title}
-                                        className="h-auto w-full object-cover max-h-[300px] sm:max-h-[500px] lg:max-h-[650px]"
+                                        className="h-auto w-full object-cover max-h-[650px]"
                                     />
                                 ) : (
-                                    <div className="aspect-video">
-                                        <iframe
-                                            title="space-video"
-                                            src={spaceData.hdurl}
-                                            allowFullScreen
-                                            className="h-full w-full"
-                                        />
-                                    </div>
+                                    <video
+                                        controls
+                                        autoPlay
+                                        muted
+                                        className="w-full"
+                                    >
+                                        <source src={spaceData.url} type="video/mp4" />
+                                        Your browser does not support video playback.
+                                    </video>
                                 )}
                             </section>
 
