@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import type { SpaceInfoProps } from "../types/spaceInfo.types";
 
 export default function Home() {
     const [spaceData, setSpaceData] = useState<SpaceInfoProps | null>(null);
-    const [errorMsg, setErrorMsg] = useState<string>('');
+    const [errorMsg, setErrorMsg] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -11,17 +11,19 @@ export default function Home() {
 
         const fetchSpaceData = async () => {
             try {
-                const response = await fetch('https://stellarlens-backend-dcbc.onrender.com/api/space-data');
+                const response = await fetch("https://stellarlens-backend.vercel.app/space-news");
                 if (!response.ok) throw new Error("Failed to fetch API.");
                 const data = await response.json();
+                console.log(data)
+                console.log('Status: ', response.status)
                 setSpaceData(data);
             } catch (error) {
-                console.error('Error', error);
-                setErrorMsg('Failed to fetch API.');
+                console.error("Error", error);
+                setErrorMsg("Failed to fetch API.");
             } finally {
                 setIsLoading(false);
             }
-        }
+        };
 
         fetchSpaceData();
     }, []);
@@ -29,59 +31,62 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-indigo-500/30">
             {isLoading ? (
-                <div className="flex h-screen items-center justify-center gap-3">
-                    <div className="h-10 w-10 animate-spin rounded-full border-4 border-solid border-indigo-500 border-t-transparent"></div>
-                    <p className="text-lg font-medium">Loading Data....</p>
+                <div className="flex min-h-screen items-center justify-center gap-3 px-4">
+                    <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-500 border-t-transparent"></div>
+                    <p className="text-base sm:text-lg font-medium">Loading Data...</p>
                 </div>
             ) : (
-                <main className="mx-auto max-w-4xl px-4 py-20 md:py-20">
+                <main className="mx-auto w-full max-w-7xl px-4 pt-6 pb-24 sm:px-6 sm:pt-8 sm:pb-28 lg:px-8 lg:pt-10">
                     {errorMsg && (
-                        <p className="text-base md:text-lg leading-relaxed text-red-300 text-justify font-normal">
-                            {errorMsg}
-                        </p>
+                        <div className="mx-auto max-w-4xl rounded-xl border border-red-500/20 bg-red-500/10 p-4">
+                            <p className="text-sm sm:text-base text-red-300 leading-relaxed">
+                                {errorMsg}
+                            </p>
+                        </div>
                     )}
 
                     {spaceData && (
-                        <article className="space-y-8">
-                            {/* Header Section */}
-                            <header className="space-y-3 border-b border-slate-800 pb-6">
-                                <h1 className="text-3xl font-extrabold tracking-tight text-[#fb9d6b] sm:text-4xl md:text-5xl bg-gradient-to-r from-indigo-200 via-slate-100 to-indigo-200 bg-clip-text">
+                        <article className="mx-auto max-w-5xl space-y-6 sm:space-y-8 lg:space-y-10">
+                            {/* Header */}
+                            <header className="space-y-4 border-b border-slate-800 pb-5 sm:pb-6">
+                                <h1 className="bg-gradient-to-r from-indigo-200 via-slate-100 to-indigo-200 bg-clip-text text-transparent font-extrabold tracking-tight text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
                                     {spaceData.title}
                                 </h1>
-                                <div className="flex items-center gap-3 text-sm font-medium text-indigo-400">
-                                    <span className="rounded-full bg-[#057fb4] text-white px-3 py-1 border border-indigo-500/20">
+
+                                <div className="flex flex-wrap items-center gap-3">
+                                    <span className="rounded-full bg-[#057fb4] px-4 py-2 text-xs sm:text-sm font-medium text-white">
                                         {spaceData.date}
                                     </span>
                                 </div>
                             </header>
 
-                            {/* Media Container (Handles Responsive Aspect Ratios) */}
-                            <section className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl shadow-indigo-950/20">
-                                {spaceData.media_type === 'image' ? (
+                            {/* Image / Video */}
+                            <section className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-xl">
+                                {spaceData.media_type === "image" ? (
                                     <img
                                         src={spaceData.hdurl}
                                         alt={spaceData.title}
-                                        className="max-h-96 w-full object-cover md:max-h-[30rem] transition-transform duration-500 hover:scale-[1.01]"
+                                        className="h-auto w-full object-cover max-h-[300px] sm:max-h-[500px] lg:max-h-[650px]"
                                     />
                                 ) : (
-                                    <div className="aspect-video w-full">
+                                    <div className="aspect-video">
                                         <iframe
                                             title="space-video"
                                             src={spaceData.hdurl}
                                             allowFullScreen
-                                            className="h-full w-full border-0"
+                                            className="h-full w-full"
                                         />
                                     </div>
                                 )}
                             </section>
 
-                            {/* Content Section */}
-                            <section className="rounded-2xl border border-slate-900 bg-slate-900/40 p-6 md:p-8 backdrop-blur-sm space-y-4">
-                                <h3 className="text-xl font-bold tracking-wide text-indigo-400 uppercase text-sm">
+                            {/* Content */}
+                            <section className="rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-sm p-4 sm:p-6 md:p-8 lg:p-10">
+                                <h2 className="mb-4 text-xs sm:text-sm font-bold uppercase tracking-widest text-indigo-400">
                                     About This Discovery
-                                </h3>
+                                </h2>
 
-                                <p className="text-base md:text-lg leading-relaxed text-slate-300 text-justify font-normal">
+                                <p className="mx-auto max-w-none lg:max-w-4xl text-sm sm:text-base md:text-lg leading-7 sm:leading-8 text-slate-300">
                                     {spaceData.explanation}
                                 </p>
                             </section>
@@ -90,5 +95,5 @@ export default function Home() {
                 </main>
             )}
         </div>
-    )
+    );
 }
