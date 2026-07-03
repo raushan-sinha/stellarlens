@@ -3,15 +3,22 @@ import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 import MenuIcon from '@mui/icons-material/Menu';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const navigate = useNavigate();
+
+    // Handle Navigation for Home page -
+    const handleNavigate = () => {
+        navigate('/');
+    }
 
     return (
         <nav className="fixed top-2 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl bg-white/80 backdrop-blur-md shadow-lg rounded-2xl z-50">
             <div className="flex items-center justify-between px-6 py-4">
                 {/* Left side: Logo & Title */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 cursor-pointer" onClick={handleNavigate}>
                     {/* Logo & title */}
                     <SatelliteAltIcon />
                     <span className="text-xl font-bold text-gray-900 tracking-tight">StellarLens</span>
