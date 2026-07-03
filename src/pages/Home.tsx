@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { SpaceInfoProps } from "../types/spaceInfo.types";
+import { getSpaceData } from "../services/spaceData.service";
 
 export default function Home() {
     const [spaceData, setSpaceData] = useState<SpaceInfoProps | null>(null);
@@ -9,14 +10,10 @@ export default function Home() {
     useEffect(() => {
         setIsLoading(true);
 
-        const fetchSpaceData = async () => {
+        const loadSpaceData = async () => {
             try {
-                const response = await fetch("https://stellarlens-backend.vercel.app/space-news");
-                if (!response.ok) throw new Error("Failed to fetch API.");
-                const data = await response.json();
-                console.log(data)
-                console.log('Status: ', response.status)
-                setSpaceData(data);
+                const response = await getSpaceData();
+                setSpaceData(response);
             } catch (error) {
                 console.error("Error", error);
                 setErrorMsg("Failed to fetch API.");
@@ -25,7 +22,7 @@ export default function Home() {
             }
         };
 
-        fetchSpaceData();
+        loadSpaceData();
     }, []);
 
     return (
