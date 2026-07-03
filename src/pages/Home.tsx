@@ -29,14 +29,14 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-indigo-500/30">
+        <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-indigo-500/30 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
             {isLoading ? (
-                <div className="flex min-h-screen items-center justify-center gap-3 px-4">
+                <div className="flex min-h-screen items-center justify-center gap-3 pt-20 pb-12 sm:pt-24 sm:pb-16 md:pt-28">
                     <div className="h-10 w-10 animate-spin rounded-full border-4 border-indigo-500 border-t-transparent"></div>
                     <p className="text-base sm:text-lg font-medium">Loading Data...</p>
                 </div>
             ) : (
-                <main className="mx-auto w-full max-w-7xl px-4 pt-6 pb-24 sm:px-6 sm:pt-8 sm:pb-28 lg:px-8 lg:pt-10">
+                <main className="mx-auto w-full max-w-7xl pt-20 pb-16 sm:pt-24 sm:pb-20 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28 xl:pb-32">
                     {errorMsg && (
                         <div className="mx-auto max-w-4xl rounded-xl border border-red-500/20 bg-red-500/10 p-4">
                             <p className="text-sm sm:text-base text-red-300 leading-relaxed">
